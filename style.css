@@ -1,0 +1,165 @@
+@charset "UTF-8";
+/* CSS Document */
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+header, aside, main, footer{
+    padding: 1em;
+}
+/*Vi bruger i dette eksempel grid-template-colums men man kan også bruge grid template areas og grid area - disse kan bruges sammen med template colums*/
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /*istedet for at skrive 1fr*3 */
+    grid-auto-rows: minmax(100px, auto); /*Ved at bruge minmax sikre vi en minimumstørrelse af vores gridelementer og ved auto sikre vi at boksen tilpasser sig efter dens indhold*/
+    gap: 10px;
+}
+
+header{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    background-color: cadetblue;
+    display:flex;
+}
+
+header nav ul {
+    display: flex;
+    list-style-type: none;
+    padding-inline-start: 0; /*Havde sat autoværdi og er derfor fjernet for at få menu i midten - tager som udgangspunkt samme værdi som padding-top*/
+}
+
+header nav li {
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+nav{
+    margin: 0 auto;
+}
+
+li a {
+    background-color: azure;
+    border: none;
+    color: cadetblue;
+}
+
+li a:hover{
+    color: white;
+    background-color:pink;
+    transition: 0.3s;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+a{
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border: 1px solid black;
+    text-decoration: none;
+    display: grid; /*Displays an element as a block-level grid container - man kan også bruge flex og block - element tager den fulde bredde*/
+    text-align: center;
+    /*width: 50%;
+    margin: 0 auto;*/
+}
+
+main{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-color: pink;
+    display: grid; /*Nested grid til div'er i main*/
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10px;
+}
+
+aside{
+    grid-column: 3;
+    background-color: beige;
+}
+
+article{
+    margin: 1em 0;
+    border: 1px solid pink;
+    padding: 0 1em 1em 1em;
+}
+
+footer{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    background-color: darkslategrey;
+    color: white;
+    display: grid; /*Nested grid til section elementer i footer*/
+    grid-template-columns: repeat(3, 1fr);    
+}
+
+
+footer section:nth-of-type(1){
+    grid-column-start: 1;
+    grid-column-end: 2;
+    text-align: center;
+}
+footer section:nth-of-type(2){
+    grid-column-start: 2;
+    grid-column-end: 3;
+    text-align: center;
+}
+
+footer section:nth-of-type(3){
+    grid-column-start: 3;
+    grid-column-end: 4;
+    text-align: center;
+}
+
+.text{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.billede{
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+/*max-width er ofte til mobiler og tablets og min-width er oftest til desktop*/
+@media screen and (max-width: 800px){ 
+    main{
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+    
+    aside{
+        grid-column-start: 1;
+        grid-column-end: 4; 
+        padding-bottom: 1em;
+    }
+    
+    footer section:nth-of-type(1){
+        grid-column-start: 1;
+        grid-column-end: 4;
+        text-align: center;
+}
+    footer section:nth-of-type(2){
+        grid-column-start: 1;
+        grid-column-end: 4;
+        text-align: center;
+}
+
+    footer section:nth-of-type(3){
+        grid-column-start: 1;
+        grid-column-end: 4;
+        text-align: center;
+}
+.text{ /*Det er vigtigt at huske at mængden af linjenumre 
+    kan ændre sig efter hvor mange columns man har defineret i sine indlejret/nested grids*/
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.billede{
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+}
